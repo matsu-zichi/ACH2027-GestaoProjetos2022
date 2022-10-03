@@ -16,14 +16,6 @@ default: &defaultpg
   password: xxxxx #<-- which you have defiend while installing postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-development:
-  <<: *default
-  database: project_development
-
-test:
-  <<: *default
-  database: project_test
-
 production:
   <<: *defaultpg
   database: project_production
