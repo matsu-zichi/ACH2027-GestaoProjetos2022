@@ -12,8 +12,8 @@ default: &defaultlite
 default: &defaultpg
   adapter: postgresql
   encoding: unicode
-  username: postgres
-  password: xxxxx #<-- which you have defiend while installing postgresql
+  username: matsumoto
+  password: engenharia #<-- which you have defiend while installing postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 production:
