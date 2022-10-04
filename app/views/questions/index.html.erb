@@ -1,14 +1,31 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Questions</h1>
-
+<h1>Questions List</h1>
 <div id="questions">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Descricao</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Dificuldade</th>
+      <th scope="col">Resposta</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
   <% @questions.each do |question| %>
-    <%= render question %>
-    <p>
-      <%= link_to "Show this question", question %>
-    </p>
+    <tr>
+      <td><%= question.descricao %></td>
+      <td><%= question.tipo %></td>
+      <td><%= question.dificuldade %></td>
+      <td><%= question.resposta %></td>
+      <td><%= link_to "Show Question", question, class: "btn btn-info"%></td>
+      <td><%= link_to "Edit Question", edit_question_path(question), class:"btn btn-warning" %></td>
+      <td><%= link_to "Destroy Question", question, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%> </td>
+    </tr>
   <% end %>
+  </tbody>
+</table>
 </div>
 
-<%= link_to "New question", new_question_path %>
+<%= link_to "New question", new_question_path, class: "btn btn-secondary" %>
+
+
