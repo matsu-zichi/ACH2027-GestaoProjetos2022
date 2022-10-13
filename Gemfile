@@ -77,3 +77,4 @@ end
 
 
 gem 'cucumber'
+gem 'devise', '~> 4.8', '>= 4.8.1' # https://rubygems.org/gems/devise
