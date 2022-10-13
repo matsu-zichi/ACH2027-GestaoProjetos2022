@@ -19,7 +19,8 @@
       <td><%= question.resposta %></td>
       <td><%= link_to "Show Question", question, class: "btn btn-info"%></td>
       <td><%= link_to "Edit Question", edit_question_path(question), class:"btn btn-warning" %></td>
-      <td><%= link_to "Destroy Question", question, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%> </td>
+    <td><%= button_to 'Destroy Question', question, method: :delete,
+  form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-danger" %></td>
     </tr>
   <% end %>
   </tbody>
