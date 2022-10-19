@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   # GET /questions or /questions.json
   def index
     @questions = Question.all
@@ -12,7 +13,8 @@ class QuestionsController < ApplicationController
 
   # GET /questions/new
   def new
-    @question = Question.new
+    # @question = Question.new
+    @question = current_user.question.new
   end
 
   # GET /questions/1/edit
@@ -21,7 +23,8 @@ class QuestionsController < ApplicationController
 
   # POST /questions or /questions.json
   def create
-    @question = Question.new(question_params)
+    # @question = Question.new(question_params)
+    @question = current_user.question.new(question_params)
 
     respond_to do |format|
       if @question.save
@@ -57,6 +60,11 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def correct_user
+    @question = current_user.questions.find_by(id: params[:id])
+    redirect_to questions_path, notice: "User not authorized to edit" if @question.nil?
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
@@ -65,6 +73,6 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:descricao, :tipo, :dificuldade, :resposta)
+      params.require(:question).permit(:descricao, :tipo, :dificuldade, :resposta, :user_id)
     end
 end

@@ -12,16 +12,17 @@
   </thead>
   <tbody class="table-group-divider">
   <% @questions.each do |question| %>
-    <tr>
-      <td><%= question.descricao %></td>
-      <td><%= question.tipo %></td>
-      <td><%= question.dificuldade %></td>
-      <td><%= question.resposta %></td>
-      <td><%= link_to "Show Question", question, class: "btn btn-info"%></td>
-      <td><%= link_to "Edit Question", edit_question_path(question), class:"btn btn-warning" %></td>
-    <td><%= button_to 'Destroy Question', question, method: :delete,
-  form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-danger" %></td>
+    <% if question.user == current_user %>
+      <tr>
+        <td><%= question.descricao %></td>
+        <td><%= question.tipo %></td>
+        <td><%= question.dificuldade %></td>
+        <td><%= question.resposta %></td>
+        <td><%= link_to "Show Question", question, class: "btn btn-info"%></td>
+        <td><%= link_to "Edit Question", edit_question_path(question), class:"btn btn-warning" %></td>
+      <td><%= button_to 'Destroy Question', question, method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-danger" %></td>
     </tr>
+    <% end %>
   <% end %>
   </tbody>
 </table>

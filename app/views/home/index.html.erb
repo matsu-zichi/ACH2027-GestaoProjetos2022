@@ -1,1 +1,50 @@
 <h1>Bem-vindo a plataforma Prova Fácil!</h1>
+
+<% if user_signed_in?%>
+   <div class="row">
+      <div class="col-sm-6">
+         <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">Meus Ambientes</h5>
+            <p class="card-text">Gerencie aqui seus ambientes</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+         </div>
+      </div>
+      <div class="col-sm-6">
+         <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">Faça alguma outra coisa aqui</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+         </div>
+      </div>
+   </div>
+<% else %>
+   <div class="row">
+      <div class="col-sm-6">
+         <div class="card text-center">
+            <div class="card-header">
+             Novo por aqui?
+            </div>
+
+            <div class="card-body">
+            <p class="card-text">Crie sua conta!</p>
+            <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-primary"%>
+            </div>
+         </div>
+      </div>
+      <div class="col-sm-6">
+         <div class="card text-center">
+            <div class="card-header">
+             Já tem uma conta?
+            </div>
+            <div class="card-body">
+            <p class="card-text">Acesse sua conta!</p>
+            <%= link_to 'Sign In', new_user_session_path, class: "btn btn-primary"%>
+            </div>
+         </div>
+      </div>
+   </div>
+<% end %>
