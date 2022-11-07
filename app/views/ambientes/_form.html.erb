@@ -1,0 +1,23 @@
+<%= form_with(model: [@user, ambiente], local: true) do |form| %>
+  
+  <% if ambiente.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(ambiente.errors.count, "error") %> prohibited this ambiente from being saved:</h2>
+      <ul>
+        <% ambiente.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+
+  <div>
+    <%= form.label :nome, style: "display: block" %>
+    <%= form.text_field :nome %>
+  </div>
+  <br>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

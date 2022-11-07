@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @ambiente %>
+
+<div>
+  <%= link_to "Editar ambiente", edit_user_ambiente_path(@user, @ambiente) %> |
+  <%= link_to "Ver todos os ambientes", user_ambientes_path(@user) %>
+
+  <%= button_to "Apagar ambiente", [@user, ambiente], method: :delete %>
+</div>

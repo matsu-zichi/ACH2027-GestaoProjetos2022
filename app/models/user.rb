@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_many :question
+         has_many :ambientes , dependent: :destroy
 end

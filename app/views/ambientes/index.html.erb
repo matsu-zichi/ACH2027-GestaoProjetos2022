@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Ambientes</h1>
+
+<div id="ambientes">
+  <% @user.ambientes.each do |ambiente| %>
+
+    <div class=card>
+        <h5 class=card-header><%=ambiente.nome%></h5>
+      <div class=card-body>
+        <a href="#" class="btn btn-primary">Provas</a>
+        <a href="#" class="btn btn-primary">Alunos</a>
+      </div>
+    </div>
+    <br>
+  <% end %>
+</div>
+
+<%= link_to "Novo ambiente", new_user_ambiente_path(@user) %>

@@ -1,0 +1,10 @@
+<h1>Editing ambiente</h1>
+
+<%= render "form", ambiente: @ambiente %>
+
+<br>
+
+<div>
+  <%= link_to "Ver mais", [@user, @ambiente] %> |
+  <%= link_to "Ver todos os ambientes", user_ambientes_path(@user) %>
+</div>
