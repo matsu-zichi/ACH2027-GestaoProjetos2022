@@ -6,4 +6,10 @@ class User < ApplicationRecord
 
          has_many :question
          has_many :ambientes , dependent: :destroy
+
+  enum role: [:Aluno, :Professor]
+  after_initialize :set_Default_role, :if => :new_record?
+  def set_Default_role
+    self.role ||= :Aluno
+  end
 end

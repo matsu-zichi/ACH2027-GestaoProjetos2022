@@ -1,6 +1,5 @@
-<h1>Bem-vindo a plataforma Prova Fácil!</h1>
-
 <% if user_signed_in?%>
+   <h1>Olá, <%= current_user.role %>!</h1>
    <div class="row">
       <div class="col-sm-6">
          <div class="card">
@@ -22,6 +21,7 @@
       </div>
    </div>
 <% else %>
+<h1>Bem-vindo a plataforma Prova Fácil!</h1>
    <div class="row">
       <div class="col-sm-6">
          <div class="card text-center">

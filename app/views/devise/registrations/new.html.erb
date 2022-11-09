@@ -20,7 +20,13 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+  </div><br />
+
+  <div> 
+    <%= f.label :"Qual sua função?" %>
+    <%= f.select :role, ["Aluno", "Professor"] %>
+    <%# Aluno = 0, Professor = 1 %>
+  </div><br />
 
   <div class="actions">
     <%= f.submit "Sign up" %>
