@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :exams
+  
 
   devise_for :users
   resources :users do
-    resources :ambientes
+    resources :ambientes do
+      resources :exams
+    end
   end
 
   resources :questions

@@ -1,13 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  question_id: 1
-  user_id: 1
-  score: 1
-  hasFinished: false
+  name: MyString
+  description: MyString
+  num_questions: 1
+  exam_date: 2022-11-24 22:02:39
+  exam_time: 1
+  ambiente: one
 
 two:
-  question_id: 1
-  user_id: 1
-  score: 1
-  hasFinished: false
+  name: MyString
+  description: MyString
+  num_questions: 1
+  exam_date: 2022-11-24 22:02:39
+  exam_time: 1
+  ambiente: two

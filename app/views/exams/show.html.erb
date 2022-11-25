@@ -2,9 +2,15 @@
 
 <%= render @exam %>
 
-<div>
-  <%= link_to "Edit this exam", edit_exam_path(@exam) %> |
-  <%= link_to "Back to exams", exams_path %>
 
-  <%= button_to "Destroy this exam", @exam, method: :delete %>
+<p>Alunos matriculados: </p>
+<p>Respondentes: </p>
+
+<%= link_to "Perguntas", class: "btn btn-primary"%>
+
+<div>
+  <%= link_to "Edit this exam", edit_user_ambiente_exam_path(current_user, @ambiente, @exam) %> |
+  <%= link_to "Back to exams", user_ambiente_exams_path %>
+
+  <%= button_to "Destroy this exam", user_ambiente_exam_path(current_user, @ambiente, @exam), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-danger"  %>
 </div>

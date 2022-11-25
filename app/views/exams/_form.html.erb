@@ -1,4 +1,4 @@
-<%= form_with(model: exam) do |form| %>
+<%= form_with(url: user_ambiente_exams_path) do |form| %>
   <% if exam.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(exam.errors.count, "error") %> prohibited this exam from being saved:</h2>
@@ -12,23 +12,28 @@
   <% end %>
 
   <div>
-    <%= form.label :question_id, style: "display: block" %>
-    <%= form.number_field :question_id %>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
   </div>
 
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.number_field :user_id %>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
   </div>
 
   <div>
-    <%= form.label :score, style: "display: block" %>
-    <%= form.number_field :score %>
+    <%= form.label :num_questions, style: "display: block" %>
+    <%= form.number_field :num_questions %>
   </div>
 
   <div>
-    <%= form.label :hasFinished, style: "display: block" %>
-    <%= form.check_box :hasFinished %>
+    <%= form.label :exam_date, style: "display: block" %>
+    <%= form.datetime_field :exam_date %>
+  </div>
+
+  <div>
+    <%= form.label :exam_time, style: "display: block" %>
+    <%= form.number_field :exam_time %>
   </div>
 
   <div>

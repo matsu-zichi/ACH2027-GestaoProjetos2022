@@ -1,9 +1,10 @@
 class ExamsController < ApplicationController
+  before_action :get_ambiente
   before_action :set_exam, only: %i[ show edit update destroy ]
 
   # GET /exams or /exams.json
   def index
-    @exams = Exam.all
+    @exams = @ambiente.exams
   end
 
   # GET /exams/1 or /exams/1.json
@@ -12,7 +13,7 @@ class ExamsController < ApplicationController
 
   # GET /exams/new
   def new
-    @exam = Exam.new
+    @exam = @ambiente.exams.build
   end
 
   # GET /exams/1/edit
@@ -21,11 +22,11 @@ class ExamsController < ApplicationController
 
   # POST /exams or /exams.json
   def create
-    @exam = Exam.new(exam_params)
+    @exam = @ambiente.exams.build(exam_params)
 
     respond_to do |format|
       if @exam.save
-        format.html { redirect_to exam_url(@exam), notice: "Exam was successfully created." }
+        format.html { redirect_to user_ambiente_exams_url, notice: "Exam was successfully created." }
         format.json { render :show, status: :created, location: @exam }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class ExamsController < ApplicationController
   def update
     respond_to do |format|
       if @exam.update(exam_params)
-        format.html { redirect_to exam_url(@exam), notice: "Exam was successfully updated." }
+        format.html { redirect_to user_ambiente_exams_url, notice: "Exam was successfully updated." }
         format.json { render :show, status: :ok, location: @exam }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +53,7 @@ class ExamsController < ApplicationController
     @exam.destroy
 
     respond_to do |format|
-      format.html { redirect_to exams_url, notice: "Exam was successfully destroyed." }
+      format.html { redirect_to user_ambiente_exam_path(current_user, @ambiente), notice: "Exam was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -60,11 +61,17 @@ class ExamsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_exam
-      @exam = Exam.find(params[:id])
+      @exam = @ambiente.exams.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def exam_params
-      params.require(:exam).permit(:question_id, :user_id, :score, :hasFinished)
+      # params.require(:exam).permit(:name, :description, :num_questions, :exam_date, :exam_time, :ambiente_id)
+      params.permit(:name, :description, :num_questions, :exam_date, :exam_time, :ambiente_id, :user_id, :id)
+    end
+
+  private
+    def get_ambiente
+      @ambiente = Ambiente.find(params[:ambiente_id])
     end
 end
