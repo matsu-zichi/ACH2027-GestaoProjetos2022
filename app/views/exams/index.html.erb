@@ -6,9 +6,9 @@
   <% @exams.each do |exam| %>
     <%= render exam %>
     <p>
-      <%= link_to "Show this exam", exam %>
+      <%= link_to "Show this exam", user_ambiente_exam_path(current_user, @ambiente, exam) %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New exam", new_exam_path %>
+<%= link_to "New exam", new_user_ambiente_exam_path(@ambiente), class: "btn btn-primary" %>

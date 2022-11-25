@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_18_002504) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_25_010239) do
   create_table "ambientes", force: :cascade do |t|
     t.string "nome"
     t.integer "user_id", null: false
@@ -20,12 +20,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_18_002504) do
   end
 
   create_table "exams", force: :cascade do |t|
-    t.integer "question_id"
-    t.integer "user_id"
-    t.integer "score"
-    t.boolean "hasFinished"
+    t.string "name"
+    t.string "description"
+    t.integer "num_questions"
+    t.datetime "exam_date"
+    t.integer "exam_time"
+    t.integer "ambiente_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["ambiente_id"], name: "index_exams_on_ambiente_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -53,4 +56,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_18_002504) do
   end
 
   add_foreign_key "ambientes", "users"
+  add_foreign_key "exams", "ambientes"
 end

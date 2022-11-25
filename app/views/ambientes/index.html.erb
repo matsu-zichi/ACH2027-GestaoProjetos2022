@@ -8,7 +8,7 @@
     <div class=card>
         <h5 class=card-header><%=ambiente.nome%></h5>
       <div class=card-body>
-        <a href="#" class="btn btn-primary">Provas</a>
+        <%= link_to 'Exames', user_ambiente_exams_path(@user, ambiente), class: "btn btn-primary"%>
         <a href="#" class="btn btn-primary">Alunos</a>
       </div>
     </div>

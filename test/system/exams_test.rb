@@ -14,10 +14,12 @@ class ExamsTest < ApplicationSystemTestCase
     visit exams_url
     click_on "New exam"
 
-    check "Hasfinished" if @exam.hasFinished
-    fill_in "Question", with: @exam.question_id
-    fill_in "Score", with: @exam.score
-    fill_in "User", with: @exam.user_id
+    fill_in "Ambiente", with: @exam.ambiente_id
+    fill_in "Description", with: @exam.description
+    fill_in "Exam date", with: @exam.exam_date
+    fill_in "Exam time", with: @exam.exam_time
+    fill_in "Name", with: @exam.name
+    fill_in "Num questions", with: @exam.num_questions
     click_on "Create Exam"
 
     assert_text "Exam was successfully created"
@@ -28,10 +30,12 @@ class ExamsTest < ApplicationSystemTestCase
     visit exam_url(@exam)
     click_on "Edit this exam", match: :first
 
-    check "Hasfinished" if @exam.hasFinished
-    fill_in "Question", with: @exam.question_id
-    fill_in "Score", with: @exam.score
-    fill_in "User", with: @exam.user_id
+    fill_in "Ambiente", with: @exam.ambiente_id
+    fill_in "Description", with: @exam.description
+    fill_in "Exam date", with: @exam.exam_date
+    fill_in "Exam time", with: @exam.exam_time
+    fill_in "Name", with: @exam.name
+    fill_in "Num questions", with: @exam.num_questions
     click_on "Update Exam"
 
     assert_text "Exam was successfully updated"
