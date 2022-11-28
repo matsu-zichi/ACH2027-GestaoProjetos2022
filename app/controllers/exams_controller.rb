@@ -53,7 +53,7 @@ class ExamsController < ApplicationController
     @exam.destroy
 
     respond_to do |format|
-      format.html { redirect_to user_ambiente_exam_path(current_user, @ambiente), notice: "Exam was successfully destroyed." }
+      format.html { redirect_to user_ambiente_exams_path(current_user, @ambiente), notice: "Exam was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -67,7 +67,7 @@ class ExamsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def exam_params
       # params.require(:exam).permit(:name, :description, :num_questions, :exam_date, :exam_time, :ambiente_id)
-      params.permit(:name, :description, :num_questions, :exam_date, :exam_time, :ambiente_id, :user_id, :id)
+      params.permit(:name, :description, :num_questions, :exam_date, :exam_time, :ambiente_id, :id)
     end
 
   private
