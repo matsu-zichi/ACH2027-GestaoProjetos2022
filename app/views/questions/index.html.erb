@@ -18,7 +18,7 @@
         <td><%= question.tipo %></td>
         <td><%= question.dificuldade %></td>
         <td><%= question.resposta %></td>
-        <td><%= button_to 'Destroy Question', user_ambiente_exam_question_path, method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-danger" %></td>
+        <td><%= button_to 'Destroy Question', user_ambiente_exam_question_path(:id => question.id), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-danger" %></td>
       </tr>
       
   <% end %>

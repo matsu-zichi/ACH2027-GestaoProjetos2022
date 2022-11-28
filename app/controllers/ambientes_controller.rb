@@ -1,3 +1,5 @@
+require "erb"
+
 class AmbientesController < ApplicationController
   before_action :get_user
   before_action :set_ambiente, only: %i[ show edit update destroy ]
@@ -56,6 +58,18 @@ class AmbientesController < ApplicationController
       format.html { redirect_to user_ambientes_path(@user), notice: "Ambiente was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def adicionar_aluno
+    @template = File.read('app/views/ambientes/adicionar_aluno.erb')
+    ERB.new(@template).result( binding )
+  end
+
+  def redirect_user_adicionado
+
+    @aluno = User.where(email: params[:email])
+
+    redirect_to user_ambientes_path(@user)
   end
 
   private

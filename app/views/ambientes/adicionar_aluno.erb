@@ -1,0 +1,10 @@
+<% @ambiente_atual = Ambiente.find(params['id'])%>
+<h1>Cadastrando aluno no ambiente <%= @ambiente_atual.nome%></h1>
+
+<%= @ambiente_atual.alunos.each do |aluno| %>
+
+
+
+<% end %>
+
+<% render 'form_cadastro_aluno', ambiente_atual: @ambiente_atual %>

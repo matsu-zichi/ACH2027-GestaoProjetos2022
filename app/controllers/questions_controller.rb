@@ -56,20 +56,20 @@ class QuestionsController < ApplicationController
     @question.destroy
 
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: "Question was successfully destroyed." }
+      format.html { redirect_to user_ambiente_exam_questions_path, notice: "Question was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   def correct_user
-    @question = current_user.ambientes.exams.questions.find_by(id: params[:id])
+    @question = Question.find(params[:id])
     redirect_to questions_path, notice: "User not authorized to edit" if @question.nil?
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
-      @question = @exam.find(params[:id])
+      @question = Question.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
