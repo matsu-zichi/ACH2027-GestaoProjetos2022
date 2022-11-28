@@ -6,7 +6,7 @@
 <p>Alunos matriculados: </p>
 <p>Respondentes: </p>
 
-<%= link_to "Perguntas", class: "btn btn-primary"%>
+<%= link_to "Perguntas", user_ambiente_exam_questions_path(current_user, @ambiente, @exam)%>
 
 <div>
   <%= link_to "Edit this exam", edit_user_ambiente_exam_path(current_user, @ambiente, @exam) %> |
