@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_212635) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "emails_alunos", default: [], array: true
+    t.string "emails_alunos"
     t.index ["user_id"], name: "index_ambientes_on_user_id"
   end
 
@@ -42,10 +42,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_212635) do
     t.string "resposta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
     t.bigint "exam_id", null: false
     t.index ["exam_id"], name: "index_questions_on_exam_id"
-    t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

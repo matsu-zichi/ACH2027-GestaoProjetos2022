@@ -5,5 +5,6 @@ class Ambiente < ApplicationRecord
 
   validates :nome, presence: true, uniqueness: true
 
-  serialize :emails_alunos
+  serialize :emails_alunos, Array
+
 end

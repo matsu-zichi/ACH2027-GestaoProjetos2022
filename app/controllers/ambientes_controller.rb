@@ -19,11 +19,12 @@ class AmbientesController < ApplicationController
   end
 
   # GET /ambientes/1/edit
-  def edit
+  def edits
   end
 
   # POST /ambientes or /ambientes.json
   def create
+
     @ambiente = @user.ambientes.build(ambiente_params)
 
     respond_to do |format|
@@ -67,8 +68,10 @@ class AmbientesController < ApplicationController
 
   def redirect_user_adicionado
 
-    @aluno = User.where(email: params[:email])
-
+    set_ambiente
+    @aluno = User.where(email: params[:email]).first
+    @ambiente.emails_alunos.push(@aluno.email)
+    @ambiente.save
     redirect_to user_ambientes_path(@user)
   end
 

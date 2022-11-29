@@ -1,3 +1,5 @@
+<% @ambiente_atual = Ambiente.find(params['id'])%>
+
 <%= form_with(url: "/users/#{current_user.id}/ambientes/#{@ambiente_atual.id}/adicionar") do |form| %>
   
   <% if @ambiente_atual.errors.any? %>
@@ -20,4 +22,13 @@
   <div>
     <%= form.submit %>
   </div>
+<% end %>
+
+<h1>Cadastrando aluno no ambiente </h1>
+
+<% @alunos = @ambiente_atual.emails_alunos %>
+<% @alunos.each do |aluno| %>
+
+    <p><%= aluno %></p>
+
 <% end %>
