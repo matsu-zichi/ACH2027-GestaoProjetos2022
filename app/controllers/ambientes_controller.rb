@@ -5,7 +5,7 @@ class AmbientesController < ApplicationController
   before_action :set_ambiente, only: %i[ show edit update destroy ]
 
   # GET /ambientes or /ambientes.json
-  def index
+  def index    
     @ambientes = @user.ambientes
   end
 
@@ -72,6 +72,17 @@ class AmbientesController < ApplicationController
     @aluno = User.where(email: params[:email]).first
     @ambiente.emails_alunos.push(@aluno.email)
     @ambiente.save
+
+    @ambiente_do_aluno = @ambiente.dup
+    @ambiente_do_aluno.user_id = @aluno.id
+    @ambiente_do_aluno.save
+
+    @ambiente.exams.each do |exam|
+      @exame_atual = exam.dup
+      @exame_atual.ambiente_id = @ambiente_do_aluno.id
+      @exame_atual.save
+    end
+
     redirect_to user_ambientes_path(@user)
   end
 

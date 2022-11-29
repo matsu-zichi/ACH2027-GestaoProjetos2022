@@ -9,7 +9,9 @@
         <h5 class=card-header><%=ambiente.nome%></h5>
       <div class=card-body>
         <%= link_to 'Exames', user_ambiente_exams_path(@user, ambiente), class: "btn btn-primary"%>
-        <%= link_to 'Alunos', "/users/#{current_user.id}/ambientes/#{ambiente.id}/adicionar", class: "btn btn-primary"%>
+        <% if current_user.role == "Professor" %>
+          <%= link_to 'Alunos', "/users/#{current_user.id}/ambientes/#{ambiente.id}/adicionar", class: "btn btn-primary"%>
+        <% end %>
       </div>
     </div>
     <br>
