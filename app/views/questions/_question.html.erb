@@ -1,7 +1,10 @@
 <div id="<%= dom_id question %>">
   <p>
-    <strong>Descricao:</strong>
-    <%= question.descricao %>
+    <strong>Descricao</strong>
+    <br>
+    <p>
+      <%= question.descricao %>
+    </p>
   </p>
 
   <p>
@@ -14,9 +17,27 @@
     <%= question.dificuldade %>
   </p>
 
-  <p>
-    <strong>Resposta:</strong>
-    <%= question.resposta %>
-  </p>
+  <% if current_user.role == "Professor" %>
+    <p>
+      <strong>Resposta:</strong>
+      <%= question.resposta %>
+    </p>
+  <% else %>
+
+    <% if question.tipo == "Alternativa" %>
+      <input type="radio" id="A" name="alternativa a" value="A">
+      <label for="A">A</label><br>
+      <input type="radio" id="B" name="alternativa b" value="B">
+      <label for="B">B</label><br>
+      <input type="radio" id="C" name="alternativa c" value="C">
+      <label for="C">C</label><br>
+      <input type="radio" id="D" name="alternativa d" value="D">
+      <label for="D">D</label><br>
+      <input type="radio" id="E" name="alternativa e" value="E">
+      <label for="E">E</label><br>
+    <% else %>
+       <textarea placeholder="Describe yourself here..."></textarea> 
+    <% end %>
+  <% end %>
 
 </div>

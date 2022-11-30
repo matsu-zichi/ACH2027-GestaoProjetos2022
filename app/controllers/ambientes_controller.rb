@@ -78,9 +78,16 @@ class AmbientesController < ApplicationController
     @ambiente_do_aluno.save
 
     @ambiente.exams.each do |exam|
+
       @exame_atual = exam.dup
       @exame_atual.ambiente_id = @ambiente_do_aluno.id
       @exame_atual.save
+      
+      exam.questions.each do |pergunta|
+        @pergunta_atual = pergunta.dup
+        @pergunta_atual.exam_id = @exame_atual.id
+        @pergunta_atual.save
+      end
     end
 
     redirect_to user_ambientes_path(@user)
