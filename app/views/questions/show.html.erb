@@ -1,11 +1,10 @@
 <%= render @question %>
-
 <div>
   <% if current_user.role == "Professor" %>
-    <%= link_to "Edit this question", edit_user_ambiente_exam_question_path(@question), class: "btn btn-dark" %> 
+    <%= link_to "Editar essa questão", edit_user_ambiente_exam_question_path(@question), class: "btn btn-dark" %> 
   <% end %>
 </div>
 <br>
 <div>
-<%= link_to "Voltar para questões", user_ambiente_exam_questions_path , class: "btn btn-secondary" %>
+  <%= link_to "Voltar para questões", user_ambiente_exam_questions_path , class: "btn btn-secondary" %>
 </div>

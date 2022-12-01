@@ -18,4 +18,6 @@
   <% end %>
 </div>
 
-<%= link_to "Novo ambiente", new_user_ambiente_path(@user) %>
+<% if current_user.role == "Professor" %>
+  <%= link_to "Novo ambiente", new_user_ambiente_path(@user) %>
+<% end %>

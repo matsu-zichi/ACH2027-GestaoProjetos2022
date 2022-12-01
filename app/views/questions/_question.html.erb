@@ -36,8 +36,9 @@
       <input type="radio" id="E" name="alternativa e" value="E">
       <label for="E">E</label><br>
     <% else %>
-       <textarea placeholder="Describe yourself here..."></textarea> 
+       <textarea placeholder="Responda aqui"></textarea> 
     <% end %>
   <% end %>
-
+  <br>
+  <%= link_to "Responder", user_ambiente_exam_questions_path, class: "btn btn-secondary" %>
 </div>

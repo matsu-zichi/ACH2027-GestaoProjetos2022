@@ -11,4 +11,6 @@
   <% end %>
 </div>
 
-<%= link_to "New exam", new_user_ambiente_exam_path(@ambiente), class: "btn btn-primary" %>
+<% if current_user.role == "Professor" %>
+  <%= link_to "New exam", new_user_ambiente_exam_path(@ambiente), class: "btn btn-primary" %>
+<% end %>
