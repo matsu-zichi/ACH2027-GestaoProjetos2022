@@ -10,12 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_25_010239) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_28_212635) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "ambientes", force: :cascade do |t|
     t.string "nome"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "emails_alunos"
     t.index ["user_id"], name: "index_ambientes_on_user_id"
   end
 
@@ -25,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_25_010239) do
     t.integer "num_questions"
     t.datetime "exam_date"
     t.integer "exam_time"
-    t.integer "ambiente_id", null: false
+    t.bigint "ambiente_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ambiente_id"], name: "index_exams_on_ambiente_id"
@@ -38,8 +42,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_25_010239) do
     t.string "resposta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_questions_on_user_id"
+    t.bigint "exam_id", null: false
+    t.index ["exam_id"], name: "index_questions_on_exam_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,4 +61,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_25_010239) do
 
   add_foreign_key "ambientes", "users"
   add_foreign_key "exams", "ambientes"
+  add_foreign_key "questions", "exams"
 end

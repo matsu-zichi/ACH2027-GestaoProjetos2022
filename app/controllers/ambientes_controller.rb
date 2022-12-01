@@ -1,9 +1,11 @@
+require "erb"
+
 class AmbientesController < ApplicationController
   before_action :get_user
   before_action :set_ambiente, only: %i[ show edit update destroy ]
 
   # GET /ambientes or /ambientes.json
-  def index
+  def index    
     @ambientes = @user.ambientes
   end
 
@@ -17,11 +19,12 @@ class AmbientesController < ApplicationController
   end
 
   # GET /ambientes/1/edit
-  def edit
+  def edits
   end
 
   # POST /ambientes or /ambientes.json
   def create
+
     @ambiente = @user.ambientes.build(ambiente_params)
 
     respond_to do |format|
@@ -56,6 +59,38 @@ class AmbientesController < ApplicationController
       format.html { redirect_to user_ambientes_path(@user), notice: "Ambiente was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def adicionar_aluno
+    @template = File.read('app/views/ambientes/adicionar_aluno.erb')
+    ERB.new(@template).result( binding )
+  end
+
+  def redirect_user_adicionado
+
+    set_ambiente
+    @aluno = User.where(email: params[:email]).first
+    @ambiente.emails_alunos.push(@aluno.email)
+    @ambiente.save
+
+    @ambiente_do_aluno = @ambiente.dup
+    @ambiente_do_aluno.user_id = @aluno.id
+    @ambiente_do_aluno.save
+
+    @ambiente.exams.each do |exam|
+
+      @exame_atual = exam.dup
+      @exame_atual.ambiente_id = @ambiente_do_aluno.id
+      @exame_atual.save
+      
+      exam.questions.each do |pergunta|
+        @pergunta_atual = pergunta.dup
+        @pergunta_atual.exam_id = @exame_atual.id
+        @pergunta_atual.save
+      end
+    end
+
+    redirect_to user_ambientes_path(@user)
   end
 
   private

@@ -2,15 +2,13 @@
 
 <%= render @exam %>
 
-
-<p>Alunos matriculados: </p>
-<p>Respondentes: </p>
-
-<%= link_to "Perguntas", class: "btn btn-primary"%>
+<%= link_to "Perguntas", user_ambiente_exam_questions_path(current_user, @ambiente, @exam)%>
 
 <div>
-  <%= link_to "Edit this exam", edit_user_ambiente_exam_path(current_user, @ambiente, @exam) %> |
-  <%= link_to "Back to exams", user_ambiente_exams_path %>
+  <%= link_to "Voltar para provas", user_ambiente_exams_path %>
 
-  <%= button_to "Destroy this exam", user_ambiente_exam_path(current_user, @ambiente, @exam), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-danger"  %>
+  <% if current_user.role == "Professor" %>
+    <%= link_to "Editar essa prova", edit_user_ambiente_exam_path(current_user, @ambiente, @exam) %> |
+    <%= button_to "Apagar essa prova", user_ambiente_exam_path(current_user, @ambiente, @exam), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class:"btn btn-danger"  %>
+  <% end %>
 </div>
